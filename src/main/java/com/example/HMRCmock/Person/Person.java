@@ -22,31 +22,29 @@ public class Person {
     private String lastName;
     private LocalDate dob;
     private Integer reportedIncome;
+    @Transient
     private Integer taxBracketPercentage;
+    @Transient
     private Integer totalTaxDue;
     private Boolean taxPaid;
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, LocalDate dob, Integer reportedIncome, Integer taxBracketPercentage, Integer totalTaxDue, Boolean taxPaid) {
+    public Person(String firstName, String lastName, LocalDate dob, Integer reportedIncome, Boolean taxPaid) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.reportedIncome = reportedIncome;
-        this.taxBracketPercentage = taxBracketPercentage;
-        this.totalTaxDue = totalTaxDue;
         this.taxPaid = taxPaid;
     }
 
-    public Person(Long id, String firstName, String lastName, LocalDate dob, Integer reportedIncome, Integer taxBracketPercentage, Integer totalTaxDue, Boolean taxPaid) {
+    public Person(Long id, String firstName, String lastName, LocalDate dob, Integer reportedIncome, Boolean taxPaid) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.reportedIncome = reportedIncome;
-        this.taxBracketPercentage = taxBracketPercentage;
-        this.totalTaxDue = totalTaxDue;
         this.taxPaid = taxPaid;
     }
 
@@ -91,7 +89,17 @@ public class Person {
     }
 
     public Integer getTaxBracketPercentage() {
-        return taxBracketPercentage;
+        Integer tax = 0;
+        if (this.reportedIncome <= 12_570){
+            tax = 0;
+        } else if (this.reportedIncome >= 12_571 && this.reportedIncome <= 50_270){
+            tax = 20;
+        } else if (this.reportedIncome >= 50_271 && this.reportedIncome <= 150_000){
+            tax = 40;
+        } else if (this.reportedIncome > 150_000){
+            tax = 45;
+        }
+        return tax;
     }
 
     public void setTaxBracketPercentage(Integer taxBracketPercentage) {
@@ -99,7 +107,8 @@ public class Person {
     }
 
     public Integer getTotalTaxDue() {
-        return totalTaxDue;
+        Integer taxDue = (getReportedIncome() / 100) * getTaxBracketPercentage();
+       return taxDue;
     }
 
     public void setTotalTaxDue(Integer totalTaxDue) {

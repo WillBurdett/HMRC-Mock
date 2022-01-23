@@ -20,17 +20,13 @@ public class PersonConfig {
                     "Will",
                     "Burdett",
                     LocalDate.of(1995, APRIL, 26),
-                    30_000,
-                    30,
-                    10_000,
+                    92_000,
                     false);
             Person alex = new Person(
                     "Alex",
                     "Smith",
                     LocalDate.of(2004, JANUARY, 13),
-                    24000,
-                    20,
-                    4800,
+                    400_000,
                     false
             );
             repository.saveAll(
