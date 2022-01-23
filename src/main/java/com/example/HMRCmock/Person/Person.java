@@ -1,9 +1,22 @@
 package com.example.HMRCmock.Person;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table
 public class Person {
+    @Id
+    @SequenceGenerator(
+            name = "person_sequence",
+            sequenceName = "person_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "person_sequence"
+    )
     private Long id;
     private String firstName;
     private String lastName;
