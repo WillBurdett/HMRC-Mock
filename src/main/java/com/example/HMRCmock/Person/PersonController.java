@@ -20,17 +20,25 @@ public class PersonController {
 
     @GetMapping
     public List<Person> getPersons() {
-        return  personService.getPersons();
+        return personService.getPersons();
     }
 
     @PostMapping
-    public void registerNewPerson(@RequestBody Person person){
+    public void registerNewPerson(@RequestBody Person person) {
         personService.addNewPerson(person);
     }
 
-    @DeleteMapping(path="{personId}")
-    public void deletePerson(@PathVariable("personId") Long personId){
+    @DeleteMapping(path = "{personId}")
+    public void deletePerson(@PathVariable("personId") Long personId) {
         personService.deletePerson(personId);
     }
 
+    @PutMapping(path = "{personId}")
+    public void updateStudent(
+            @PathVariable("personId") Long personId,
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String secondName,
+            @RequestParam(required = false) String personEmail) {
+        personService.updateStudent(personId, firstName, secondName, personEmail);
+    }
 }
