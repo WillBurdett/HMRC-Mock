@@ -21,6 +21,7 @@ public class Person {
     private String firstName;
     private String lastName;
     private LocalDate dob;
+    private String email;
     private Integer reportedIncome;
     @Transient
     private Integer taxBracketPercentage;
@@ -31,19 +32,21 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstName, String lastName, LocalDate dob, Integer reportedIncome, Boolean taxPaid) {
+    public Person(String firstName, String lastName, LocalDate dob, String email, Integer reportedIncome, Boolean taxPaid) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
+        this.email = email;
         this.reportedIncome = reportedIncome;
         this.taxPaid = taxPaid;
     }
 
-    public Person(Long id, String firstName, String lastName, LocalDate dob, Integer reportedIncome, Boolean taxPaid) {
+    public Person(Long id, String firstName, String lastName, LocalDate dob, String email, Integer reportedIncome, Boolean taxPaid) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
+        this.email = email;
         this.reportedIncome = reportedIncome;
         this.taxPaid = taxPaid;
     }
@@ -78,6 +81,14 @@ public class Person {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getReportedIncome() {
@@ -130,6 +141,7 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dob=" + dob +
+                ", email='" + email + '\'' +
                 ", reportedIncome=" + reportedIncome +
                 ", taxBracketPercentage=" + taxBracketPercentage +
                 ", totalTaxDue=" + totalTaxDue +
@@ -142,11 +154,11 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(dob, person.dob) && Objects.equals(reportedIncome, person.reportedIncome) && Objects.equals(taxBracketPercentage, person.taxBracketPercentage) && Objects.equals(totalTaxDue, person.totalTaxDue) && Objects.equals(taxPaid, person.taxPaid);
+        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(dob, person.dob) && Objects.equals(email, person.email) && Objects.equals(reportedIncome, person.reportedIncome) && Objects.equals(taxBracketPercentage, person.taxBracketPercentage) && Objects.equals(totalTaxDue, person.totalTaxDue) && Objects.equals(taxPaid, person.taxPaid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, dob, reportedIncome, taxBracketPercentage, totalTaxDue, taxPaid);
+        return Objects.hash(id, firstName, lastName, dob, email, reportedIncome, taxBracketPercentage, totalTaxDue, taxPaid);
     }
 }
